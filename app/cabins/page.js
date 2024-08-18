@@ -1,3 +1,7 @@
 export default function Page() {
-  return <div>All Cabins</div>;
+  return (
+    <div>
+      <h1>All Cabins</h1>
+    </div>
+  );
 }
