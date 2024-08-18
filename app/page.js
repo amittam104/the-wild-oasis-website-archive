@@ -8,6 +8,7 @@ export default function Home() {
       <Image
         src={bg}
         fill
+        placeholder="blur"
         className="object-cover object-top"
         alt="Mountains and forests with two cabins"
       />
