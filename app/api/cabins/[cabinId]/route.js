@@ -10,7 +10,9 @@ export async function GET(request, { params }) {
     ]);
 
     return Response.json({ cabin, bookedDates });
-  } catch (error) {
-    return Response.json({ messgae: "Cabin could not be found" });
+  } catch {
+    return Response.json({ message: "Cabin not found" });
   }
 }
+
+// export async function POST() {}

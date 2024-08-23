@@ -1,9 +1,13 @@
 import SelectCountry from "@/app/_components/SelectCountry";
-import UpdateprofileForm from "@/app/_components/UpdateprofileForm";
+import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
+
+export const metadata = {
+  title: "Update profile",
+};
 
 export default function Page() {
   // CHANGE
-
+  const countryFlag = "pt.jpg";
   const nationality = "portugal";
 
   return (
@@ -17,14 +21,14 @@ export default function Page() {
         faster and smoother. See you soon!
       </p>
 
-      <UpdateprofileForm>
+      <UpdateProfileForm>
         <SelectCountry
           name="nationality"
           id="nationality"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           defaultCountry={nationality}
         />
-      </UpdateprofileForm>
+      </UpdateProfileForm>
     </div>
   );
 }

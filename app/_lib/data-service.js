@@ -1,6 +1,6 @@
+import { notFound } from "next/navigation";
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
-import { notFound } from "next/navigation";
 
 /////////////
 // GET
@@ -13,7 +13,7 @@ export async function getCabin(id) {
     .single();
 
   // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
+  // await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -43,7 +43,8 @@ export const getCabins = async function () {
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
-  await new Promise((res) => setTimeout(res, 1000));
+  // For testing
+  // await new Promise((res) => setTimeout(res, 2000));
 
   if (error) {
     console.error(error);
@@ -115,8 +116,6 @@ export async function getBookedDatesByCabinId(cabinId) {
     throw new Error("Bookings could not get loaded");
   }
 
-  // await new Promise((res) => setTimeout(res, 4000));
-
   // Converting to actual dates to be displayed in the date picker
   const bookedDates = data
     .map((booking) => {
@@ -133,12 +132,12 @@ export async function getBookedDatesByCabinId(cabinId) {
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
+  // await new Promise((res) => setTimeout(res, 5000));
+
   if (error) {
     console.error(error);
     throw new Error("Settings could not be loaded");
   }
-
-  // await new Promise((res) => setTimeout(res, 2000));
 
   return data;
 }

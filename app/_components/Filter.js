@@ -3,61 +3,59 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function Filter() {
-  const searchParam = useSearchParams();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const currentFilter = searchParam.get("capacity");
+  const activeFilter = searchParams.get("capacity") ?? "all";
 
   function handleFilter(filter) {
-    const params = new URLSearchParams(searchParam);
-
+    const params = new URLSearchParams(searchParams);
     params.set("capacity", filter);
-
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   return (
-    <div className=" flex items-center">
+    <div className="border border-primary-800 flex">
       <Button
         filter="all"
         handleFilter={handleFilter}
-        currentFilter={currentFilter}
+        activeFilter={activeFilter}
       >
-        All Cabins
+        All cabins
       </Button>
       <Button
         filter="small"
         handleFilter={handleFilter}
-        currentFilter={currentFilter}
+        activeFilter={activeFilter}
       >
-        1 &mdash; 3
+        2&mdash;3 guests
       </Button>
       <Button
         filter="medium"
         handleFilter={handleFilter}
-        currentFilter={currentFilter}
+        activeFilter={activeFilter}
       >
-        4 &mdash; 7
+        4&mdash;7 guests
       </Button>
       <Button
         filter="large"
         handleFilter={handleFilter}
-        currentFilter={currentFilter}
+        activeFilter={activeFilter}
       >
-        8 &mdash; 10
+        8&mdash;12 guests
       </Button>
     </div>
   );
 }
 
-function Button({ filter, handleFilter, currentFilter, children }) {
+function Button({ filter, handleFilter, activeFilter, children }) {
   return (
     <button
-      onClick={() => handleFilter(filter)}
-      className={`px-5 py-2 hover:bg-primary-700 border border-primary-800 ${
-        currentFilter === filter ? "bg-primary-700" : ""
+      className={`px-5 py-2 hover:bg-primary-700 ${
+        filter === activeFilter ? "bg-primary-700 text-primary-50" : ""
       }`}
+      onClick={() => handleFilter(filter)}
     >
       {children}
     </button>
